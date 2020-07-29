@@ -1,0 +1,14 @@
+App To-Do List:
+
+- add error message if a wrong format for emails is entered when registering
+
+-add error message for passwords shorter then 5 characters when registering
+
+-update 'brain' logo to better image
+
+-add additional detect features using clarifai API
+	-Color
+	-Food
+(These are the only two that actually seem practical)
+
+-**STRENGTHEN SECURITY**
