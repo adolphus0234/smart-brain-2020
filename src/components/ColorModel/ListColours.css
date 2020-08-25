@@ -1,0 +1,19 @@
+.list-colors {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	margin-left: 12%;
+	margin-right: 12%;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+}
+
+@media only screen and (max-width: 580px) {
+.list-colors {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	margin-left: 5%;
+	margin-right: 5%;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	}
+}
