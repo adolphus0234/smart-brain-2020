@@ -42,7 +42,7 @@ class ListColours extends React.Component {
 
 
 	return (
-		<div className='f4 bg-white-20 br4 shadow-5 list-colors' style={{display: 'flex', justifyContent: 'center'}}>
+		<div className='F4 bg-white-20 br4 shadow-5 list-colors' style={{display: 'flex', justifyContent: 'center'}}>
 			<div id='hex-code' className='ma3'>
 			 {`hex: #${this.props.hexValue.slice(1)}`}
 			</div>

@@ -3,7 +3,6 @@ import FaceModel from './FaceModel';
 import './FaceRecognition.css';
 
 const FaceRecognition = ({ imageUrl, box, faceFetch, timeout, invalidUrl, apiModelFail }) => {
-	console.log(invalidUrl);
 
 		if (invalidUrl === true) {
 			return (	

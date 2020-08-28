@@ -7,13 +7,29 @@
 	padding-bottom: 0.5rem;
 }
 
+.F4 {
+	font-size: 1.25rem;
+}
+
 @media only screen and (max-width: 580px) {
-.list-colors {
-	margin-top: 1rem;
-	margin-bottom: 1rem;
-	margin-left: 5%;
-	margin-right: 5%;
-	padding-top: 0.5rem;
-	padding-bottom: 0.5rem;
-	}
+	.list-colors {
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+		margin-left: 5%;
+		margin-right: 5%;
+		padding-top: 0.5rem;
+		padding-bottom: 0.5rem;
+		}
+}
+
+@media only screen and (max-width: 500px) {
+	.list-colors {
+
+		margin-left: 2%;
+		margin-right: 2%;
+		}
+
+	.F4 {
+		font-size: 1rem;
+	}	
 }

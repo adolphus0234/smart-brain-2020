@@ -11,7 +11,7 @@ class ListIngredients extends React.Component {
 
 	render(props) {
 	return (
-		<div className='f4 bg-white-20 br4 shadow-5 list-ingredients' style={{display: 'flex', justifyContent: 'center'}}>
+		<div className='F4 bg-white-20 br4 shadow-5 list-ingredients' style={{display: 'flex', justifyContent: 'center'}}>
 			<div className='w-20 ingredient-name'>
 			 {`${this.props.foodItem}`}
 			</div>
@@ -21,7 +21,7 @@ class ListIngredients extends React.Component {
 			<div className='w-20 prob'>
 			 {`Prob:`}
 			</div>
-			<div className='f3 w-20 percentage'>
+			<div className='F3 w-20 percentage'>
 			{`${this.round(`${this.props.probability*100}`, 1)}%`}
 			</div>
 		</div>

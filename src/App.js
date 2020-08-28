@@ -11,6 +11,7 @@ import FoodModel from './components/FoodModel/FoodModel';
 import Signin from './components/Signin/Signin';
 import Register from './components/Register/Register';
 import Particles from 'react-particles-js';
+import {imageScroll} from './functions/imageScroll.js';
 import './App.css';
 
 //PARTICLES BG=====================
@@ -101,15 +102,11 @@ class App extends Component {
         this.setState({input: event.target.value});
     }
 
-    imageScroll = () => {
-        const elmnt = document.getElementById("inputimage");
-        return elmnt.scrollIntoView();
-    }
-
     //API TIMEOUT ====================================
 
     setTimeoutState = () => {
         this.setState({timeout: true});
+        imageScroll();
     }
 
     apiTimeout = () => {
@@ -142,9 +139,9 @@ class App extends Component {
             timeout: false
         });
         this.apiTimeout();
-        this.imageScroll();
+        imageScroll();
 
-        fetch('https://shielded-tundra-50055.herokuapp.com/imageurl', {
+        fetch('https://shielded-tundra-50055.herokuapp.co/imageurl', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -161,7 +158,7 @@ class App extends Component {
                     this.setState({invalidUrl: false})
                 }
                     this.apiClearTimeout();
-                    this.imageScroll();
+                    imageScroll();
                     this.setState({faceFetch: false})
                     fetch('https://shielded-tundra-50055.herokuapp.com/image', {
                         method: 'put',
@@ -189,7 +186,7 @@ class App extends Component {
                 timeout: false
             })
        this.apiTimeout();
-       this.imageScroll();
+       imageScroll();
 
        fetch('https://shielded-tundra-50055.herokuapp.com/imageurlcolor', {
                 method: 'post',
@@ -200,6 +197,7 @@ class App extends Component {
                     })
         .then(response => response.json())
         .then(resp => {
+            if (resp) {
 
             if (resp === 'Unable to access API') {
                     this.setState({invalidUrl: true, colorFetch: false})
@@ -208,11 +206,10 @@ class App extends Component {
                 }
 
             this.apiClearTimeout();
+            imageScroll();
             const colorsArray = resp.outputs[0].data.colors;
-            this.imageScroll();
             this.setState({colors: colorsArray, colorFetch: 'false'})
-            
-            if (resp) {
+
                     fetch('https://shielded-tundra-50055.herokuapp.com/image', {
                         method: 'put',
                         headers: {'Content-Type': 'application/json'},
@@ -238,7 +235,7 @@ class App extends Component {
                 timeout: false
             })
        this.apiTimeout();
-       this.imageScroll();
+       imageScroll();
 
        fetch('https://shielded-tundra-50055.herokuapp.com/imageurlfood', {
                 method: 'post',
@@ -249,6 +246,7 @@ class App extends Component {
                     })
         .then(response => response.json())
         .then(resp => {
+            if (resp) {            
 
             if (resp === 'Unable to access API') {
                     this.setState({invalidUrl: true, foodFetch: false})
@@ -257,11 +255,10 @@ class App extends Component {
                 }
 
             this.apiClearTimeout();
+            imageScroll();
             const foodArray = resp.outputs[0].data.concepts;
-            this.imageScroll();
             this.setState({ingredients: foodArray, foodFetch: 'false'})
             
-            if (resp) {
                     fetch('https://shielded-tundra-50055.herokuapp.com/image', {
                         method: 'put',
                         headers: {'Content-Type': 'application/json'},
