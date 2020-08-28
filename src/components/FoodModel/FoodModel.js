@@ -1,8 +1,10 @@
 import React from 'react';
 import ListIngredients from './ListIngredients';
 import Scroll from './Scroll';
+import '../FaceRecognition/FaceRecognition.css';
 
-const FoodModel = ({ ingredients, foodFetch, timeout }) => {
+const FoodModel = ({ ingredients, foodFetch, timeout, invalidUrl }) => {
+	
 	const foodModelComponent = ingredients.map((item, i) => {
 			return <ListIngredients 
 					key={i} 
@@ -10,12 +12,16 @@ const FoodModel = ({ ingredients, foodFetch, timeout }) => {
 					probability={ingredients[i].value}
 					/>
 		})
+
+		if (invalidUrl === true) {
+			return <p className='font-size'>Enter valid URL.</p>
+		}
 	
 		if (foodFetch === true && timeout === false) {
-			return <h1>Please wait...</h1>
+			return <p className='font-size'>Please wait...</p>
 
 		} else if (foodFetch === true && timeout === true) {
-			return <h1>Server is not responding. Please try again.</h1>
+			return <p className='font-size'>Server is not responding. Please try again.</p>
 			
 		} else if (foodFetch === 'false') {
 			return(

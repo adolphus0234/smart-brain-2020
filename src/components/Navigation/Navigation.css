@@ -4,3 +4,17 @@
     top: 0;
     width: 100%;
 }
+
+.nav {
+	font-size: 1.5rem;
+	padding: 18px;
+}
+
+@media only screen and (max-width: 500px) {
+	.nav { 
+		font-size: 0.9rem;
+		padding: 8px; 
+	}	
+}
+
+

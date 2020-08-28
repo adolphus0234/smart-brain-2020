@@ -45,6 +45,7 @@ const initialState = {
             colorFetch: false,
             foodFetch: false,
             timeout: false,
+            invalidUrl: false,
             apiModelFail: false,
             user: {
                 id: '',
@@ -56,6 +57,7 @@ const initialState = {
         }
 
 let setT;
+
 //========================================
 
 class App extends Component {
@@ -83,8 +85,12 @@ class App extends Component {
         if (route === 'signout' || route === 'register' || route === 'signin') {
             this.setState(initialState);
         } else if (route === 'home' || 'home2' || 'home3') {
-            this.setState({isSignedIn: true});
-            this.setState({box: {}});           
+            this.setState({
+                isSignedIn: true,
+                box: {},
+                invalidUrl: false,
+                input: ''
+            });         
         }
         this.setState({route: route});
     }
@@ -108,7 +114,6 @@ class App extends Component {
 
     apiTimeout = () => {
         setT = setTimeout(this.setTimeoutState, 8000);
-
     }
 
     apiClearTimeout = () => {
@@ -131,9 +136,14 @@ class App extends Component {
 
 
     onPictureSubmit = () => {
-        this.setState({imageUrl: this.state.input, faceFetch: true, timeout: false})
+        this.setState({
+            imageUrl: this.state.input, 
+            faceFetch: true, 
+            timeout: false
+        });
         this.apiTimeout();
         this.imageScroll();
+
         fetch('https://shielded-tundra-50055.herokuapp.com/imageurl', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
@@ -144,6 +154,12 @@ class App extends Component {
         .then(response => response.json())
         .then(response => {
             if (response) {
+
+                if (response === 'Unable to access API') {
+                    this.setState({invalidUrl: true, faceFetch: false})
+                } else {
+                    this.setState({invalidUrl: false})
+                }
                     this.apiClearTimeout();
                     this.imageScroll();
                     this.setState({faceFetch: false})
@@ -167,9 +183,14 @@ class App extends Component {
     //COLOR_MODEL========================================
 
     onPictureSubmitColor = () => {
-       this.setState({imageUrl2: this.state.input, colorFetch: true, timeout: false})
+       this.setState({
+                imageUrl2: this.state.input, 
+                colorFetch: true, 
+                timeout: false
+            })
        this.apiTimeout();
        this.imageScroll();
+
        fetch('https://shielded-tundra-50055.herokuapp.com/imageurlcolor', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
@@ -179,6 +200,13 @@ class App extends Component {
                     })
         .then(response => response.json())
         .then(resp => {
+
+            if (resp === 'Unable to access API') {
+                    this.setState({invalidUrl: true, colorFetch: false})
+                } else {
+                    this.setState({invalidUrl: false})
+                }
+
             this.apiClearTimeout();
             const colorsArray = resp.outputs[0].data.colors;
             this.imageScroll();
@@ -204,9 +232,14 @@ class App extends Component {
     //FOOD_MODEL===========================================
 
     onPictureSubmitFood = () => {
-       this.setState({imageUrl3: this.state.input, foodFetch: true, timeout: false})
+       this.setState({
+                imageUrl3: this.state.input, 
+                foodFetch: true, 
+                timeout: false
+            })
        this.apiTimeout();
        this.imageScroll();
+
        fetch('https://shielded-tundra-50055.herokuapp.com/imageurlfood', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
@@ -216,6 +249,13 @@ class App extends Component {
                     })
         .then(response => response.json())
         .then(resp => {
+
+            if (resp === 'Unable to access API') {
+                    this.setState({invalidUrl: true, foodFetch: false})
+                } else {
+                    this.setState({invalidUrl: false})
+                }
+
             this.apiClearTimeout();
             const foodArray = resp.outputs[0].data.concepts;
             this.imageScroll();
@@ -247,6 +287,7 @@ class App extends Component {
                     user,
                     faceFetch,
                     timeout,
+                    invalidUrl,
                     apiModelFail, 
                     imageUrl,
                     colors,
@@ -282,6 +323,7 @@ class App extends Component {
                         onInputChange={this.onInputChange}
                         onPictureSubmit={this.onPictureSubmit}
                         box={box}
+                        invalidUrl={invalidUrl}
                         imageUrl={imageUrl}
                         faceFetch={faceFetch}
                         timeout={timeout}
@@ -304,7 +346,8 @@ class App extends Component {
                           <ColorModel 
                                 colors={colors} 
                                 colorFetch={colorFetch}
-                                timeout={timeout} 
+                                timeout={timeout}
+                                invalidUrl={invalidUrl} 
                                 />
                           <ColorImage imageUrl={imageUrl2} />
                       </div>
@@ -324,7 +367,8 @@ class App extends Component {
                                 <FoodModel 
                                     ingredients={ingredients} 
                                     foodFetch={foodFetch}
-                                    timeout={timeout} 
+                                    timeout={timeout}
+                                    invalidUrl={invalidUrl} 
                                     />
                                 <FoodImage imageUrl={imageUrl3} />
                             </div>

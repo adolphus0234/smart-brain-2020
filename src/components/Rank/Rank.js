@@ -1,12 +1,13 @@
-import React from 'react'; 
+import React from 'react';
+import './Rank.css'; 
 
 const Rank = ({ name, entries }) => {
 	return (
 			<div>
-				<div className="f4 white">
+				<div className="white name">
 					{`${name}, your current number of entries is:`}
 				</div>
-				<div className="f1 white">
+				<div className="white entries">
 					{entries} 
 				</div>
 			</div>

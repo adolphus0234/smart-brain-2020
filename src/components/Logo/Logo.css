@@ -1,3 +1,28 @@
 .Tilt {
 	background: linear-gradient(to right, rgb(16, 161, 248), rgb(229, 6, 75));
+	height: 150px;
+	width: 150px;
+}
+
+.Tilt-inner {
+	padding: 18px;
+}
+
+.logo-margin {
+	margin: 2rem;
+}
+
+@media only screen and (max-width: 500px) {
+	.Tilt {
+		height: 85px;
+		width: 85px;
+	}
+
+	.Tilt-inner {
+		padding: 10px;
+	}
+
+	.logo-margin {
+		margin: 1.2rem;
+	}
 }

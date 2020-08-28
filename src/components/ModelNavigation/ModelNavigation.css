@@ -1,0 +1,19 @@
+.F2 {
+		font-size: 2.25rem;
+}
+
+.F3 {
+	font-size: 1.5rem;
+}
+
+
+
+@media only screen and (max-width: 500px) {
+	.F2 {
+		font-size: 1.5rem;
+	}
+
+	.F3 {
+		font-size: 1rem;
+	}
+}
