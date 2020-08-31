@@ -141,7 +141,7 @@ class App extends Component {
         this.apiTimeout();
         imageScroll();
 
-        fetch('https://shielded-tundra-50055.herokuapp.co/imageurl', {
+        fetch('https://shielded-tundra-50055.herokuapp.com/imageurl', {
                 method: 'post',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
@@ -152,14 +152,15 @@ class App extends Component {
         .then(response => {
             if (response) {
 
-                if (response === 'Unable to access API') {
-                    this.setState({invalidUrl: true, faceFetch: false})
-                } else {
-                    this.setState({invalidUrl: false})
-                }
                     this.apiClearTimeout();
                     imageScroll();
                     this.setState({faceFetch: false})
+
+                if (response === 'Unable to access API') {
+                    return this.setState({invalidUrl: true, faceFetch: false})
+                } else {
+                    this.setState({invalidUrl: false})
+                }
                     fetch('https://shielded-tundra-50055.herokuapp.com/image', {
                         method: 'put',
                         headers: {'Content-Type': 'application/json'},

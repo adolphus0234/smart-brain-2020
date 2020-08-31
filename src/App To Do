@@ -1,5 +1,7 @@
 -add a save state feature
 
+-add "signing in..." message when waiting for user signin
+
 -code refacter maybe (onsubmit functions are cluttered)
 >move color an food onSubmit functions to ColorModel and FoodModel respectively
 (will need to convert to classes)

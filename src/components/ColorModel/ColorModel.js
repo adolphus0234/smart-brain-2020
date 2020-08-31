@@ -4,7 +4,6 @@ import Scroll2 from './Scroll2';
 import '../FaceRecognition/FaceRecognition.css';
 
 const ColorModel = ({ colors, colorFetch, timeout, invalidUrl }) => {
-	console.log(invalidUrl)
 
 	const colorModelComponent = colors.map((color, i) => {
 			return <ListColours key={i} hexValue={colors[i].raw_hex} />

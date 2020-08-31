@@ -19,6 +19,8 @@ class Signin extends React.Component {
 
 	submitFunction = () => {
 		const passwordField = document.getElementById('password');
+		const errorMessage = document.getElementById('error-message');	
+			  errorMessage.innerText = "Signing In...";			
 		fetch('https://shielded-tundra-50055.herokuapp.com/signin', {
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
@@ -33,7 +35,6 @@ class Signin extends React.Component {
 				 this.props.loadUser(user);	
 				 this.props.onRouteChange('home');
 				} else {
-					const errorMessage = document.getElementById('error-message');
 					return errorMessage.innerText = "Error Signing In...";
 				}
 			});
