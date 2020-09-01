@@ -1,0 +1,3 @@
+-code refacter at some point (onsubmit functions are cluttering App.js)
+>move color an food onSubmit functions to ColorModel and FoodModel respectively
+(will need to convert to classes)
